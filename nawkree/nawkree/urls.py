@@ -23,7 +23,7 @@ from userprofile.views import dashboard
 urlpatterns = [
     path('', frontpage, name='frontpage'),
     path('', include('core.urls')),
-    path('', include('job.urls')),
-    path('dashboard/', dashboard, name='dashboard'),
+    path('jobs/', include('job.urls')),
+    path('dashboard/', include('userprofile.urls')),
     path('admin/', admin.site.urls),
 ]
