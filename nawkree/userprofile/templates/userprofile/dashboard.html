@@ -14,7 +14,14 @@
             <p class="">You don't have any jobs yet...</p>
         {% endfor %}
     {% else %}
-        <p>Is job Seeker</p>
+        <h2 class="subtitle">Applied Jobs</h2>
+        {% for application in request.user.applications.all %}
+            <div class="application">
+                <a href="{% url "view_application" application.id %}">{{ application.job.title }}</a>
+            </div>
+            {% empty %}
+                <p class="">You have not applied for any jobs yet...</p>
+        {% endfor %}
     {% endif %}
 
 {% endblock %}
