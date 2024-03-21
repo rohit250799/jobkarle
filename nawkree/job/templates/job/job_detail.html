@@ -5,14 +5,4 @@
     <p class="is-size-4">{{ job.short_description }}</p>
     <p class="">{{ job.long_description }}</p>
 
-    {% if request.user.userprofile.is_employer %}
-        <div class="">
-            <p>You cannot apply...</p>
-            <a href="{% url "dashboard" %}">To go back to <strong>Dashboard</strong>, press here</a>
-        </div>
-        
-    {% else %}
-        <a href="{% url "apply_for_job" job.id %}" class="button is-success">Apply</a>
-    {% endif %}
-    
 {% endblock %}

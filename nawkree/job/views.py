@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Job
 from .forms import AddJobForm, ApplicationForm
-from notification.utilities import create_notification
+
 # Create your views here.
 
 def job_detail(request, job_id):
@@ -11,33 +11,11 @@ def job_detail(request, job_id):
         'job': job
     })
 
-@login_required
-def apply_for_job(request, job_id):
-    if not request.user.userprofile.is_employer:
-        job = Job.objects.get(pk=job_id)
-        if request.method == 'POST':
-            form = ApplicationForm(request.POST)
-            if form.is_valid():
-                application = form.save(commit=False)
-                application.job = job
-                application.created_by = request.user
-                application.save()
+#@login_required
+#def apply_for_job(request, job_id):
 
-                create_notification(request, job.created_by, 'application', extra_id=application.id)
-
-                return redirect('dashboard')
-        else:
-            form = ApplicationForm()
-        
-        return render(request, 'job/apply_for_job.html', {
-            'form': form,
-            'job': job,
-        })
-    else:
-        return render(request, 'job/employer_error.html')
     
          
-
 @login_required
 def add_job(request):
     if request.method == 'POST':
