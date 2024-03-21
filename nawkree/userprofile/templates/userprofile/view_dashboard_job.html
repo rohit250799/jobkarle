@@ -3,7 +3,12 @@
 {% block content %}
     <h1 class="title">View Job - {{ job.title }}</h1>
 
+    <div class="">
+        <p>Applicants: </p>
+    </div>
+
     {% for application in job.applications.all %}
         <a href="{% url "view_application" application.id %}">{{ application.created_by.username }}</a>
+        <br>
     {% endfor %}
 {% endblock %}
