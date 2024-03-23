@@ -2,6 +2,11 @@
 
 {% block content %}
     <h1 class="title">View Job - {{ job.title }}</h1>
+    <p class="is-size-4">{{ job.short_description }}</p>
+    <p>Company name: <strong>{{ job.company_name }}</strong></p>
+    <p>Company size: <strong>{{ job.get_company_size_display }}</strong></p>
+    <p>Job created at: <strong>{{ job.created_at }}</strong></p>
+    <br><hr>
 
     <div class="">
         <p>Applicants: </p>

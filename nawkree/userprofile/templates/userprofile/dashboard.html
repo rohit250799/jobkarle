@@ -6,12 +6,20 @@
     {% if userprofile.is_employer %}
         <h2 class="subtitle">Jobs</h2>
 
+        <a href="{% url "add_job" %}" class="button is-success">Add job</a>
+        <br><hr>
+        <p>Created jobs: </p> <br>
         {% for job in request.user.jobs.all %}
-            <div class="job">
-                <a href="{% url "view_dashboard_job" job.id %}">{{ job.title }}</a>
+            <div class="job card">
+                <div class="card-content">
+                    <a href="{% url "view_dashboard_job" job.id %}">{{ job.title }}</a>
+                    <p class="is-size-4">{{ job.short_description }}</p>
+                    <p class="">{{ job.long_description }}</p>
+                </div>
+                
             </div>
         {% empty %}
-            <p class="">You don't have any jobs yet...</p>
+            <p class="">You don't have any created jobs yet...</p>
         {% endfor %}
     {% else %}
         <h2 class="subtitle">Applied Jobs</h2>
