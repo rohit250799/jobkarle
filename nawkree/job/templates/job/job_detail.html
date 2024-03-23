@@ -4,6 +4,8 @@
     <h1 class="title">{{ job.title }}</h1>
     <p class="is-size-4">{{ job.short_description }}</p>
     <p class="">{{ job.long_description }}</p>
+    {% if job.company_address %}<p>Company address: {{ job.company_address }}</p>{% endif %}
+    <p>Company size: <strong>{{ job.get_company_size_display }}</strong></p>
 
     {% if request.user.userprofile.is_employer %}
         <div class="">
