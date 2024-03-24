@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1 class="title">View Job - {{ job.title }}</h1>
+
+    <a href="{% url "edit_job" job.id %}" class="button is-success mb-4">Edit Job</a>
+
     <p class="is-size-4">{{ job.short_description }}</p>
     <p>Company name: <strong>{{ job.company_name }}</strong></p>
     <p>Company size: <strong>{{ job.get_company_size_display }}</strong></p>

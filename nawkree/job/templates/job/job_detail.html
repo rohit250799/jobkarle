@@ -1,11 +1,13 @@
 {% extends "core/base.html" %}
 
 {% block content %}
-    <h1 class="title">{{ job.title }}</h1>
+    <h1 class="title">{{ job.title }} ({{ job.get_status_display }})</h1>
     <p class="is-size-4">{{ job.short_description }}</p>
     <p class="">{{ job.long_description }}</p>
     {% if job.company_address %}<p>Company address: {{ job.company_address }}</p>{% endif %}
     <p>Company size: <strong>{{ job.get_company_size_display }}</strong></p>
+
+    <hr>
 
     {% if request.user.userprofile.is_employer %}
         <div class="">
@@ -14,7 +16,12 @@
         </div>
         
     {% else %}
-        <a href="{% url "apply_for_job" job.id %}" class="button is-success">Apply</a>
+        {% if job.status == 'active' %}
+            <a href="{% url "apply_for_job" job.id %}" class="button is-success">Apply</a>
+        {% else %}
+            <p>This job is not available anymore...</p>
+        {% endif %}
+        
     {% endif %}
     
 {% endblock %}

@@ -12,7 +12,7 @@
         {% for job in request.user.jobs.all %}
             <div class="job card">
                 <div class="card-content">
-                    <a href="{% url "view_dashboard_job" job.id %}">{{ job.title }}</a>
+                    <a href="{% url "view_dashboard_job" job.id %}">{{ job.title }} ({{ job.get_status_display }})</a>
                     <p class="is-size-4">{{ job.short_description }}</p>
                     <p class="">{{ job.long_description }}</p>
                 </div>
